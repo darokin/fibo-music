@@ -66,4 +66,6 @@ for i in range(len(base36PhiDecimals)):
 # ==============================================
 	
 # ==============================================
-ps.make_wav(song, fn = "phitimed01.wav")
+wavname = "phitimed01.wav"
+ps.make_wav(song, fn = wavname, silent=True)
+print("File '" + wavname + "' generated")
