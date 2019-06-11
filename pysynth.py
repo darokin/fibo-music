@@ -28,10 +28,9 @@
 # 5.33 = -8 = dotted eighth
 """
 
-from demosongs import *
 from mkfreq import getfreq
 
-pitchhz, keynum = getfreq(pr = True)
+pitchhz, keynum = getfreq()#pr = True)
 
 ##########################################################################
 #### Main program starts below
@@ -63,7 +62,6 @@ harm_max = 4.
 ##########################################################################
 
 import wave, math, struct
-from mixfiles import mix_files
 
 def make_wav(song,bpm=120,transpose=0,pause=.05,boost=1.1,repeat=0,fn="out.wav", silent=False):
 	f=wave.open(fn,'w')
@@ -158,30 +156,3 @@ def make_wav(song,bpm=120,transpose=0,pause=.05,boost=1.1,repeat=0,fn="out.wav",
 	f.writeframes(b'')
 	f.close()
 	print()
-
-##########################################################################
-# Synthesize demo songs
-##########################################################################
-
-if __name__ == '__main__':
-	print()
-	print("Creating Demo Songs... (this might take about a minute)")
-	print()
-
-	# SONG 1
-	make_wav(song1, fn = "pysynth_scale.wav")
-
-	# SONG 2
-	make_wav(song2, bpm = 95, boost = 1.2, fn = "pysynth_anthem.wav")
-
-	# SONG 3
-	make_wav(song3, bpm = 132/2, pause = 0., boost = 1.1, fn = "pysynth_chopin.wav")
-
-	# SONG 4
-	#   right hand part
-	make_wav(song4_rh, bpm = 130, transpose = 1, pause = .1, boost = 1.15, repeat = 1, fn = "pysynth_bach_rh.wav")
-	#   left hand part
-	make_wav(song4_lh, bpm = 130, transpose = 1, pause = .1, boost = 1.15, repeat = 1, fn = "pysynth_bach_lh.wav")
-	#   mix both files together
-	mix_files("pysynth_bach_rh.wav", "pysynth_bach_lh.wav", "pysynth_bach.wav")
-
